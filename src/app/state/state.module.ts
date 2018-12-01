@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { appReducer } from './app.reducer';
 import { TodosEffects } from './todo/todo.effects';
@@ -10,7 +11,10 @@ import { TodosEffects } from './todo/todo.effects';
   imports: [
     CommonModule,
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([TodosEffects])
+    EffectsModule.forRoot([TodosEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
+    })
   ],
   declarations: []
 })
